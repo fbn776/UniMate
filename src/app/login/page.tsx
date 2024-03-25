@@ -1,19 +1,31 @@
 "use client";
 
-import { useState } from "react";
-// import { useRouter } from "next/router";
-import "./login.css"
+import { FormEvent, useState } from "react";
+import "./login.css";
 import Link from "next/link";
+import axios from "axios";
 
+const backendURL = process.env.backend;
 
 export default function Login() {
+	console.log(backendURL)
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	//const router = useRouter();
 
-	const handleSubmit = async () => {
-		//e.preventDefault();
-		//router.push("/dashboard");
+	const handleSubmit = async (e: FormEvent) => {
+		e.preventDefault();
+		console.log(process.env.backend);
+		axios
+			.post(`${backendURL}/login`, {
+				username: "user",
+				password: "password",
+			})
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -38,10 +50,14 @@ export default function Login() {
 						/>
 					</div>
 					<div className="text-right w-full">
-						<Link className="text-blue-600 text-sm" href="/signup">Not registered?</Link>
+						<Link className="text-blue-600 text-sm" href="/signup">
+							Not registered?
+						</Link>
 					</div>
 					<div className="w-full flex justify-center mt-10">
-						<button type="submit">Login</button>
+						<button type="submit" onSubmit={handleSubmit}>
+							Login
+						</button>
 					</div>
 				</form>
 			</div>
