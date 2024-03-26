@@ -13,10 +13,12 @@ app.use(bodyParser.json());
 
 app.post('/signup', (req, res) => {
 	const { username, password, name, age, email, course, subjects } = req.body;
-	console.log(Users)
+	console.log("Signup Requested: ", username, password, name, age, email, course, subjects);
 	if (hasUser(Users, username)) {
+		console.log("User already exits")
 		res.status(201).json({ message: "User already exits" });
 	} else {
+		console.log("User created");
 		Users.push({
 			username, password, name, age, email, course, subjects
 		});
@@ -26,15 +28,16 @@ app.post('/signup', (req, res) => {
 
 app.post('/login', (req, res) => {
 	const { username, password } = req.body;
-	console.log("Requested: ", username, password);
+	console.log("Login Requested: ", username, password);
 
 	if (hasUserAndPassword(Users, username, password)) {
+		console.log("Login successful");
 		res.status(200).json({ message: 'Login successful', login: true });
 	} else {
+		console.log("Login failed");
 		res.status(201).json(getUser(Users, username));
 	}
 });
-
 
 
 const genAI = new GoogleGenerativeAI(process.env.Gemini_key);
@@ -60,11 +63,11 @@ Query: ${data.query}
 
 Now respond to the Query`;
 
+	console.log("Chat requested: ", prompt);
 	const result = await model.generateContent(prompt);
 	const response = await result.response;
 	const text = response.text();
-
-
+	console.log("Response: ", text);
 	res.status(200).json({ response: text });
 });
 
