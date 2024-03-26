@@ -37,3 +37,4 @@ yarn-error.log*
 
 frontend/.next
 */.env
+backend/.env
