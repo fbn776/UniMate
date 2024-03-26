@@ -1,0 +1,24 @@
+
+.chats div {
+	position: relative;
+	max-width: 100%;
+	display: flex;
+}
+
+.chats div[data-from='user'] {
+	justify-content: flex-end;
+}
+
+.chats div[data-from='ai'] p {
+	@apply bg-zinc-200
+}
+
+.chats div p {
+	max-width: 70%;
+	@apply bg-slate-300 px-5 py-5 rounded mb-5;
+}
+
+.chats div p * {
+	margin: 0px;
+	padding: 0px;
+}
