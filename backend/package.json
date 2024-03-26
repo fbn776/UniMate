@@ -1,0 +1,26 @@
+{
+  "name": "unimate-be",
+  "version": "1.0.0",
+  "description": "UniMate backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.3.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbn776/UniMate-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fbn776/UniMate-backend/issues"
+  },
+  "homepage": "https://github.com/fbn776/UniMate-backend#readme"
+}
